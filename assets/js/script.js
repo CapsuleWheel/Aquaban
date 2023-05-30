@@ -7,7 +7,7 @@ $(document).ready(function () {
         $('.header__burger, .menu').removeClass('active');
         $('body').removeClass('lock');
     })
-    $('._btn-popup').click(function (event) {
-        $('body').removeClass('lock');
-    })
+    //$('._btn-popup').click(function (event) {
+    //    $('body').removeClass('lock');
+    //})
 })

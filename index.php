@@ -1,6 +1,6 @@
 <?php
     require_once("./assets/php/connect.php");
-    $sql = "SELECT * FROM reviews";
+    $sql = "SELECT * FROM reviews WHERE status=1";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -24,20 +24,28 @@
         <header class="header">
             <div class="header__container _container">
                 <a href="index.html" class="header__logo">
-                    <img class="header__logo-img" srcset="./assets/images/logo/header-logo.png">
+                    <img class="header__logo-img" src="./assets/images/logo/header-logo.png" alt="logo">
                 </a>
                 <nav class="header__menu menu">
                     <img class="menu__logo" src="./assets/images/logo/contacts-logo.png" alt="">
                     <ul class="menu__nav-list">
+                        <li class="menu__item"><a href="#price" class="menu__link">Аквабан - онлайн</a></li>
                         <li class="menu__item"><a href="#price" class="menu__link">Цены</a></li>
                         <li class="menu__item"><a href="#" class="menu__link">Акции</a></li>
                         <li class="menu__item"><a href="#" class="menu__link">Отзывы</a></li>
                         <li class="menu__item"><a href="#" class="menu__link">Контакты</a></li>
                     </ul>
-                    <ul class="menu__authorization-list">
-                        <li class="menu__item"><a href="#" class="menu__link">Вход</a></li>
-                        <li class="menu__item"><a href="#" class="menu__link">Регистрация</a></li>
-                    </ul>
+                    <div class="menu__mobile_nav-contacts">
+                        <p class="menu__mobile_nav-text">
+                            тел. 8 (3812) 955-055
+                        </p>
+                        <p class="menu__mobile_nav-text">
+                            Аквабан ВКонтакте
+                        </p>
+                        <p class="menu__mobile_nav-text">
+                            e-mail. mailto:955055@bk.ru
+                        </p>
+                    </div>
                 </nav>
                 <div class="header__burger">
                     <span></span>
@@ -117,7 +125,7 @@
                                 <div class="broadcast__text">
                                     У нас вы можете отслеживать загруженность автомойки и качество выполнения работ в режиме прямой онлайн-трансляции.
                                 </div>
-                                <a href="#" class="broadcast__button">
+                                <a href="#" class="broadcast__button button">
                                     Смотреть
                                 </a>
                             </div>
@@ -131,7 +139,7 @@
                                     <div class="price__image">
                                         <img src="./assets/images/prise_card/econom.png" alt="">
                                     </div>
-                                    <a href="#" class="price__button _btn-popup" id="button1">
+                                    <a href="#" class="price__button button _btn-popup" id="button1">
                                         Эконом 400 руб.
                                     </a>
                                 </div>
@@ -139,7 +147,7 @@
                                     <div class="price__image">
                                         <img src="./assets/images/prise_card/standart.png" alt="">
                                     </div>
-                                    <a href="#" class="price__button" id="button2">
+                                    <a href="#" class="price__button button" id="button2">
                                         Стандарт 500 руб.
                                     </a>
                                 </div>
@@ -147,7 +155,7 @@
                                     <div class="price__image">
                                         <img src="./assets/images/prise_card/maximum.png" alt="">
                                     </div>
-                                    <a href="#" class="price__button" id="button3">
+                                    <a href="#" class="price__button button" id="button3">
                                         Максимум 650 руб.
                                     </a>
                                 </div>
@@ -359,7 +367,7 @@
                 </p>
              </div>
         </footer>
-
+        
         <div class="popup" id="popup1">
             <div class="popup__content">
                 <img src="./assets/images/prise_card/econom__popup.png" alt="" class="popup__image">

@@ -1,0 +1,144 @@
+@import url(../style/reset.css);
+
+body {
+    font-family: Montserrat;
+    min-height: 100%;
+    overflow: hidden;
+    background: linear-gradient(90deg, #141E30 0%, #243B55 100%);
+}
+
+body::-webkit-scrollbar {
+    width: 10px;               /* ширина всей полосы прокрутки */
+}
+
+body::-webkit-scrollbar-track {
+    background: #F4F7FB;        /* цвет зоны отслеживания */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #243B55;    /* цвет бегунка */
+    border-radius: 20px;       /* округлось бегунка */
+    border: 1px solid #F4F7FB;  /* отступ вокруг бегунка */
+}
+
+.wrapper {
+    min-height: 100%;
+    overflow: hidden;
+    background: linear-gradient(90deg, #141E30 0%, #243B55 100%);
+    padding: 50px 0;
+}
+
+._container {
+    max-width: 1140px;
+    margin: 0 auto;
+    box-sizing: content-box;
+}
+
+/*----------header----------*/
+
+.header {
+    width: 100%;
+    z-index: 50;
+    display: flex;
+    min-height: 80px;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 50px;
+}
+
+.header__title {
+    font-size: 26px;
+    font-weight: 500;
+}
+
+/*----------main----------*/
+
+.main {
+    background-color: #E7EFF7;
+    min-height: 90vh;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main__application {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.application {
+    margin-top: 50px;
+    font-weight: 500;
+
+    color: #243D56;
+}
+
+.application__title {
+    font-size: 26px;
+}
+
+.application__list {
+    width: 70vw;
+    height: 60vh;
+    border: #243B55 3px solid;
+    border-radius: 25px;
+}
+
+.application__items {
+    margin: 30px 0;
+    position: relative;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.application__name {
+    position: absolute;
+    left: 60px;
+}
+
+.application__tel {
+    position: absolute;
+    left: 260px;
+}
+
+.application__application {
+    position: absolute;
+    left: 560px;
+}
+
+.application__container {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.application__string {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    height: auto;
+    margin: auto 0;
+
+    position: relative;
+}
+
+.application-name {
+    position: absolute;
+    left: 60px;
+    height: auto;
+}
+
+.application-tel {
+    position: absolute;
+    left: 260px;
+    height: auto;
+}
+
+.application-application {
+    position: absolute;
+    left: 560px;
+    max-width: 500px;
+    hyphens: auto;
+}
