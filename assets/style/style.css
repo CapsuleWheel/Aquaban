@@ -1,6 +1,6 @@
 @import url(./reset.css);
 
-body {
+*, body {
     font-family: Montserrat;
 }
 
@@ -23,10 +23,20 @@ body .lock {
 }
 
 .wrapper {
+    display: flex;
+    flex-direction: column;
     min-height: 100%;
     overflow: hidden;
     background: linear-gradient(90deg, #141E30 0%, #243B55 100%);
     padding: 50px 0;
+}
+
+.main {
+    flex: 1;
+}
+
+.footer {
+    margin-top: auto;
 }
 
 ._container {
@@ -63,10 +73,15 @@ body .lock {
 .header__container {
     position: relative;
     z-index: 2;
+    padding: 0 150px;
     display: flex;
     min-height: 80px;
     align-items: center;
     justify-content: space-between;
+}
+  
+.header__container > *:nth-child(2) {
+    flex-grow: 0;
 }
 
 .header__menu {
@@ -85,11 +100,28 @@ body .lock {
 
 .menu__nav-list {
      display: flex;
+     align-items: center;
      column-gap: 40px;
  }
 
 .menu__link {
-    font-size: 20px;
+    font-size: 18px;
+}
+
+button.menu__link {
+    background: none;
+    color: #f4f7fb;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.menu__link:hover {
+    color: #c9c9c9;
+}
+
+.menu__user-icon {
+    width: 44px;
 }
 
 .header__burger {
@@ -223,16 +255,13 @@ body .lock {
     padding-bottom: 24px;
 }
 
-.price__button {
+button.price__button {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 200px;
     height: 35px;
     background: #CADCED;
-}
-
-.price__card a {
     color: #243D56;
     font-size: 18px;
     line-height: 141.69%;
@@ -402,29 +431,38 @@ body .lock {
 
 
 .review-name {
-    color: #000;
+    color: #243D56;
     display: flex;
     align-items: center;
     margin-bottom: 20px;
     font-size: 16px;
     font-weight: 600;
+    position: relative;
+    padding-left: 20px;
 }
 
 .review-name::before{
     content: '';
-    background: #243B55;
-    width: 25px;
-    height: 25px;
+    position: absolute;
+    left: -20px;
+    top: -50%;
+  
+    width: 35px;
+    height: 35px;
+  
+    background-image: url('../images/icon/user-profile.png');
+    background-color: #243B55;
     border-radius: 50%;
-    display: inline-block;
-    margin-right: 5px;
+  
+    background-size: 35px 35px;
 }
 
 .review-text {
-    color: #000;
+    color: #243D56;
     font-size: 16px;
     font-weight: 400;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
+    
 }
 
 /*-----------contacts------------*/
@@ -590,7 +628,12 @@ body .lock {
 .footer {
     display: flex;
     justify-content: space-between;
-    padding: 70px 0 20px;
+    z-index: 2;
+    padding: 70px 150px 20px;
+    display: flex;
+    min-height: 80px;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .footer__info {
@@ -603,6 +646,7 @@ body .lock {
 }
 
 /*modal---------------------------*/
+
 
 .popup {
     position: fixed;
@@ -619,8 +663,29 @@ body .lock {
     background-color: #E7EFF7;
     display: flex;
     color: #243D56;
-    margin: 250px  auto 0;
     border-radius: 10px;
+}
+
+.popup__broadcast .popup__title {
+    justify-content: start;
+}
+
+.popup__broadcast {
+    width: 1200px;
+    height: 344px;
+    border-radius: 10px;
+    background-color: #E7EFF7;
+    color: #243D56;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px ;
+}
+
+.popup__cameras {
+    display: flex;
+    gap: 5%;
+    justify-content: center;
 }
 
 .popup__image {
@@ -647,4 +712,84 @@ body .lock {
     top: 10px;
     right: 10px;
 }
+
+.modal-overlay {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.7);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	width: 100%;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.3s ease-in-out;
+}
+
+.modal {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	display: none;
+}
+
+.modal-overlay--visible {
+	opacity: 1;
+	visibility: visible;
+	transition: all 0.3s ease-in-out;
+}
+
+.modal--visible {
+	display: block;
+}
+
+/*button-up---------------------------*/
+.btn-up {
+    /* фиксированное позиционирование */
+    position: fixed;
+    /* цвет фона */
+    background-color: #243B55;
+    /* расстояние от правого края окна браузера */
+    right: 20px;
+    /* расстояние от нижнего края окна браузера */
+    bottom: 0;
+    /* скругление верхнего левого угла */
+    border-top-left-radius: 8px;
+    /* скругление верхнего правого угла */
+    border-top-right-radius: 8px;
+    /* вид курсора */
+    cursor: pointer;
+    /* отображение элемента как flex */
+    display: flex;
+    /* выравниваем элементы внутри элемента по центру вдоль поперечной оси */
+    align-items: center;
+    /* выравниваем элементы внутри элемента по центру вдоль главной оси */
+    justify-content: center;
+    /* ширина элемента */
+    width: 60px;
+    /* высота элемента */
+    height: 50px;
+}
   
+.btn-up::before {
+    content: "";
+    width: 40px;
+    height: 40px;
+    background: transparent no-repeat center center;
+    background-size: 100% 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z'/%3E%3C/svg%3E");
+}
+  
+.btn-up_hide {
+    display: none;
+}
+  
+@media (hover: hover) and (pointer: fine) {
+    .btn-up:hover {
+      background-color: #3b6691; /* цвет заднего фона при наведении */
+    }
+}

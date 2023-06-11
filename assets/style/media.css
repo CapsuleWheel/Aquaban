@@ -52,6 +52,10 @@
         padding: 50px 0;
     }
 
+    .menu__nav-list.hide {
+        display: none;
+    }
+
 /*------header------*/
 
     .header {
@@ -69,14 +73,12 @@
         position: fixed;
         top: -200%;
         right: 0;
-        width: 250px;
-        height: 410px;
         background: linear-gradient(180deg, #E7EFF7 0%, #CADCED 100%);
         border-radius: 0px 0px 0px 30px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 30px 0;
+        padding: 30px 30px;
         gap: 20px;
         transition: all 0.5s ease 0s;
     }
@@ -152,6 +154,9 @@
     align-items: center;
     gap: 15px;
     margin-top: 30px;
+    }
+    .menu__mobile_nav-text {
+        padding-top: 10px;
     }
 /*------page------*/
 
@@ -456,12 +461,97 @@
     }
 
     .footer img {
-        height: 30px;
+        height: 40px;
         padding-left: 30px;
     }
 
     .footer__info {
         font-size: 8px;
         padding-right: 30px;
+    }
+
+    /*--------profile--------*/
+
+    .page {
+        margin-top: 70px;
+    }
+    .profile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .profile__container {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .profile__data {
+        flex-direction: column;
+        font-size: 20px;
+    }
+    .profile__data img {
+        width: 200px;
+    }
+    .profile__info {
+        align-items: center;
+    }
+    .profile__promo-field {
+        width: 260px;
+        height: 64px;
+    }
+    .promo {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .promo__line {
+        width: 80%;
+    }
+    .promo__info {
+        font-size: 16px;
+        line-height: 20px;
+        text-align: center;
+        letter-spacing: 0.125em;
+        width: 260px;
+    }
+    .orders {
+        margin-top: 15px;
+    }
+    .orders__container {
+        flex-wrap: nowrap;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .orders__title {
+        font-size: 20px;
+    }
+    .orders__block {
+        width: 260px;
+        height: 110px;
+    }
+    .popup__content {
+        width: 260px;
+        background-color: #E7EFF7;
+        display: flex;
+        flex-direction: column;
+        color: #243D56;
+        border-radius: 10px;
+    }
+    .popup__image {
+        border-radius: 10px 10px 0 0;
+    }
+    .popup__title, .popup__price{
+        font-size: 20px;
+        font-weight: 500;
+    }
+    .popup__info {
+        font-size: 16px;
+        padding: 10px 10px;
+        gap: 12px;
+    }
+    .order-btn {
+        width: 160px;
+        height: 30px;
+        font-size: 18px;
     }
 }

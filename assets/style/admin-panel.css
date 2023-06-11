@@ -8,24 +8,39 @@ body {
 }
 
 body::-webkit-scrollbar {
-    width: 10px;               /* ширина всей полосы прокрутки */
+    width: 10px;
+    /* ширина всей полосы прокрутки */
 }
 
 body::-webkit-scrollbar-track {
-    background: #F4F7FB;        /* цвет зоны отслеживания */
+    background: #F4F7FB;
+    /* цвет зоны отслеживания */
 }
 
 body::-webkit-scrollbar-thumb {
-    background-color: #243B55;    /* цвет бегунка */
-    border-radius: 20px;       /* округлось бегунка */
-    border: 1px solid #F4F7FB;  /* отступ вокруг бегунка */
+    background-color: #243B55;
+    /* цвет бегунка */
+    border-radius: 20px;
+    /* округлось бегунка */
+    border: 1px solid #F4F7FB;
+    /* отступ вокруг бегунка */
 }
 
 .wrapper {
+    display: flex;
+    flex-direction: column;
     min-height: 100%;
     overflow: hidden;
     background: linear-gradient(90deg, #141E30 0%, #243B55 100%);
     padding: 50px 0;
+}
+
+.main {
+    flex: 1;
+}
+
+.footer {
+    margin-top: auto;
 }
 
 ._container {
@@ -55,90 +70,139 @@ body::-webkit-scrollbar-thumb {
 
 .main {
     background-color: #E7EFF7;
-    min-height: 90vh;
-    
+    min-height: 100%;
+    padding: 50px 100px;
+
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
 }
 
-.main__application {
+.main__wrapper {
     display: flex;
-    flex-direction: column;
-    gap: 50px;
+    justify-content: space-between
 }
 
-.application {
-    margin-top: 50px;
+.main__title {
+    margin-bottom: 30px;
+    font-size: 26px;
     font-weight: 500;
-
     color: #243D56;
 }
 
-.application__title {
-    font-size: 26px;
-}
-
-.application__list {
-    width: 70vw;
-    height: 60vh;
-    border: #243B55 3px solid;
-    border-radius: 25px;
-}
-
-.application__items {
-    margin: 30px 0;
-    position: relative;
-    font-size: 18px;
+.application,
+.reviews {
+    min-width: 960px;
+    max-height: 400px;
     font-weight: 500;
+    color: #243D56;
+    border: #243B55 3px solid;
+    border-radius: 25px 0 0 25px;
+    padding: 30px;
+    overflow: auto;
+
 }
 
-.application__name {
-    position: absolute;
-    left: 60px;
+.application::-webkit-scrollbar {
+    width: 10px;
+    /* ширина всей полосы прокрутки */
 }
 
-.application__tel {
-    position: absolute;
-    left: 260px;
+.application::-webkit-scrollbar-track {
+    background: #F4F7FB;
+    /* цвет зоны отслеживания */
 }
 
-.application__application {
-    position: absolute;
-    left: 560px;
+.application::-webkit-scrollbar-thumb {
+    background-color: #243B55;
+    /* цвет бегунка */
+    border-radius: 20px;
+    /* округлось бегунка */
+    border: 1px solid #F4F7FB;
+    /* отступ вокруг бегунка */
+    height: 50px;
 }
 
-.application__container {
+.application__table {
+    border-collapse: collapse;
+}
+
+.table__title {
+    font-weight: bold;
+    text-align: left;
+}
+
+.row__name,
+.row__tel,
+.row__application {
+    word-wrap: break-word;
+    padding: 20px 30px 10px 0;
+}
+
+.row__application {
+    max-width: 500px;
+}
+
+a.row__button {
+    margin-left: 20px;
+}
+
+
+.main__sidebar {
+    min-width: 300px;
+    height: 400px;
+    border: #243B55 3px solid;
+    border-radius: 0 25px 25px 0;
+    padding: 30px;
+    margin-left: 50px;
+    margin-top: 56px;
+
     display: flex;
     flex-direction: column;
-    gap: 60px;
 }
 
-.application__string {
+.sidebar__buttons {
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+}
+
+.sidebar__button {
+    background: none;
+    font-size: 18px;
+}
+
+.sidebar__button::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #243B55;
+    margin-right: 10px;
+}
+
+.footer {
     display: flex;
     justify-content: space-between;
-    font-size: 16px;
-    height: auto;
-    margin: auto 0;
-
-    position: relative;
+    z-index: 2;
+    padding: 70px 150px 20px;
+    display: flex;
+    min-height: 80px;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.application-name {
-    position: absolute;
-    left: 60px;
-    height: auto;
+.footer__info {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: space-between;
+    font-size: 18px;
+    line-height: 22px;
 }
 
-.application-tel {
-    position: absolute;
-    left: 260px;
-    height: auto;
-}
-
-.application-application {
-    position: absolute;
-    left: 560px;
-    max-width: 500px;
-    hyphens: auto;
+#reviews {
+    display: none;
 }

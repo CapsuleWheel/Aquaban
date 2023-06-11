@@ -1,4 +1,6 @@
 <?php
+
+    session_start();
     require_once("./assets/php/connect.php");
     $sql = "SELECT * FROM reviews WHERE status=1";
     $stmt = $pdo->prepare($sql);
@@ -22,20 +24,37 @@
 <body>
     <div class="wrapper">
         <header class="header">
-            <div class="header__container _container">
-                <a href="index.html" class="header__logo">
+            <div class="header__container">
+                <a href="index.php" class="header__logo">
                     <img class="header__logo-img" src="./assets/images/logo/header-logo.png" alt="logo">
                 </a>
                 <nav class="header__menu menu">
                     <img class="menu__logo" src="./assets/images/logo/contacts-logo.png" alt="">
                     <ul class="menu__nav-list">
-                        <li class="menu__item"><a href="#price" class="menu__link">Аквабан - онлайн</a></li>
+                        <li class="menu__item"><a href="#broadcast" class="menu__link">Аквабан - онлайн</a></li>
                         <li class="menu__item"><a href="#price" class="menu__link">Цены</a></li>
-                        <li class="menu__item"><a href="#" class="menu__link">Акции</a></li>
-                        <li class="menu__item"><a href="#" class="menu__link">Отзывы</a></li>
-                        <li class="menu__item"><a href="#" class="menu__link">Контакты</a></li>
+                        <li class="menu__item"><a href="#stocks" class="menu__link">Акции</a></li>
+                        <li class="menu__item"><a href="#reviews" class="menu__link">Отзывы</a></li>
+                        <li class="menu__item"><a href="#contacts" class="menu__link">Контакты</a></li>
                     </ul>
                     <div class="menu__mobile_nav-contacts">
+                        <ul class="menu__nav-list">
+                            <?php
+                            if($_SESSION['user']) {
+                                if ($_SESSION['user']['role'] == 'admin') {
+                                    echo "<li class='menu__item'><a class='menu__link' href='admin/index.php'>Админ-панель</a></li>";
+                                
+                                }
+                                echo "<li class='menu__item'><a class='menu__link' href='assets/php/logout.php'>Выйти</a></li>";
+                                if ($_SESSION['user']['role'] == 'user') {
+                                    echo "<li class='menu__item'><a href='./profile.php'><img class='menu__user-icon' src='./assets/images/icon/user-profile.png' alt='#'></a></li>";
+                                }
+                            }else {
+                                echo "<li class='menu__item'><a class='menu__link' href='login.php'>Войти</a></li>";
+                                echo "<li class='menu__item'><a class='menu__link' href='registr.php'>Регистрация</a></li>";
+                            }
+                            ?>
+                        </ul>
                         <p class="menu__mobile_nav-text">
                             тел. 8 (3812) 955-055
                         </p>
@@ -47,6 +66,23 @@
                         </p>
                     </div>
                 </nav>
+                    <ul class="menu__nav-list hide">
+                        <?php
+                        if($_SESSION['user']) {
+                            if ($_SESSION['user']['role'] == 'admin') {
+                                echo "<li class='menu__item'><a class='menu__link' href='admin/index.php'>Админ-панель</a></li>";
+                            
+                            }
+                            echo "<li class='menu__item'><a class='menu__link' href='assets/php/logout.php'>Выйти</a></li>";
+                            if ($_SESSION['user']['role'] == 'user') {
+                                echo "<li class='menu__item'><a href='./profile.php'><img class='menu__user-icon' src='./assets/images/icon/user-profile.png' alt='#'></a></li>";
+                            }
+                        }else {
+                            echo "<li class='menu__item'><a class='menu__link' href='login.php'>Войти</a></li>";
+                            echo "<li class='menu__item'><a class='menu__link' href='registr.php'>Регистрация</a></li>";
+                        }
+                        ?>
+                    </ul>
                 <div class="header__burger">
                     <span></span>
                 </div>
@@ -125,9 +161,9 @@
                                 <div class="broadcast__text">
                                     У нас вы можете отслеживать загруженность автомойки и качество выполнения работ в режиме прямой онлайн-трансляции.
                                 </div>
-                                <a href="#" class="broadcast__button button">
+                                <button class="broadcast__button button btn" data-path="broadcast-popup">
                                     Смотреть
-                                </a>
+                                </button>
                             </div>
                         </div>
                         <div id="price" class="sections__container price _container">
@@ -137,27 +173,27 @@
                             <div class="price__cards">
                                 <div class="price__card">
                                     <div class="price__image">
-                                        <img src="./assets/images/prise_card/econom.png" alt="">
+                                        <img src="./assets/images/prise_card/econom.jpg" alt="">
                                     </div>
-                                    <a href="#" class="price__button button _btn-popup" id="button1">
+                                    <button class="price__button button btn" data-path="econom-popup">
                                         Эконом 400 руб.
-                                    </a>
+                                    </button>
                                 </div>
                                 <div class="price__card">
                                     <div class="price__image">
-                                        <img src="./assets/images/prise_card/standart.png" alt="">
+                                        <img src="./assets/images/prise_card/standart.jpg" alt="">
                                     </div>
-                                    <a href="#" class="price__button button" id="button2">
+                                    <button class="price__button button btn" data-path="standart-popup">
                                         Стандарт 500 руб.
-                                    </a>
+                                    </button>
                                 </div>
                                 <div class="price__card">
                                     <div class="price__image">
-                                        <img src="./assets/images/prise_card/maximum.png" alt="">
+                                        <img src="./assets/images/prise_card/maximum.jpg" alt="">
                                     </div>
-                                    <a href="#" class="price__button button" id="button3">
+                                    <button class="price__button button btn" data-path="maximum-popup">
                                         Максимум 650 руб.
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -328,7 +364,7 @@
                                             Напишите нам, если остались вопросы. Ответим каждому.
                                         </p>
                                     </div>
-                                    <form action="./assets/php/create_application.php" class="contacts__form" method="post">
+                                    <form id="contacts-form" action="./assets/php/create_application.php" class="contacts__form" method="post">
                                         <div class="contacts__input-block">
                                             <input type="text" name="name" required placeholder="Ваше имя" class="contacts__input-name" >
                                             <input type="tel" name="tel" required placeholder="Номер телефона" class="contacts__input-number" >
@@ -337,7 +373,7 @@
                                         </div>
                                         <textarea name="application" placeholder="Опишите ваш вопрос" class="contacts__textarea"></textarea>
                                     </form>
-                                    <form action="./assets/php/create_application.php" class="contacts__form-mobile" method="post">
+                                    <form id="contacts-form" action="./assets/php/create_application.php" class="contacts__form-mobile" method="post">
                                         <div class="contacts__input-block">
                                             <input type="text" name="name" required placeholder="Ваше имя" class="contacts__input-name" >
                                             <input type="tel" name="tel" required placeholder="Номер телефона" class="contacts__input-number" >
@@ -356,7 +392,7 @@
                 </div>
             </div>
         </main>
-        <footer class="footer _container">
+        <footer class="footer">
              <img src="./assets/images/logo/header-logo.png" alt="logo">
              <div class="footer__info">
                 <p>
@@ -368,65 +404,83 @@
              </div>
         </footer>
         
-        <div class="popup" id="popup1">
-            <div class="popup__content">
-                <img src="./assets/images/prise_card/econom__popup.png" alt="" class="popup__image">
-                <div class="popup__info">
-                    <div class="popup__title">
-                        Эконом
-                    </div>
-                    <div class="popup__text">
-                    Предварительная мойка 1-фазный автошампунь Арки высокого давления 
-                    Мойка автоматизированными щетками Сушка турбовентиляторами
-                    </div>
-                    <div class="popup__price">
-                        450 руб.
+        <div class="modals">
+            <div class="modal-overlay">
+                <div class="modal modal--1" data-target="broadcast-popup">
+                    <div class="popup__broadcast">
+                        <div class="popup__title">
+                            Аквабан - онлайн
+                        </div>
+                        <div class="popup__cameras">
+                            <img class="cam-img" src="./assets/images/broadcast/cam1.jpg" alt="camera">
+                            <img class="cam-img" src="./assets/images/broadcast/cam2.jpg" alt="camera">
+                            <img class="cam-img" src="./assets/images/broadcast/cam3.jpg" alt="camera">
+                        </div>
                     </div>
                 </div>
-                <button class="close-btn">Закрыть</button>
+                <div class="modal modal--2" data-target="econom-popup">
+                    <div class="popup__content">
+                        <img src="./assets/images/prise_card/econom__popup.png" alt="" class="popup__image">
+                        <div class="popup__info">
+                            <div class="popup__title">
+                                Эконом
+                            </div>
+                            <div class="popup__text">
+                            Предварительная мойка 1-фазный автошампунь Арки высокого давления 
+                            Мойка автоматизированными щетками Сушка турбовентиляторами
+                            </div>
+                            <div class="popup__price">
+                                450 руб.
+                            </div>
+                            <button class="order-btn button">Заказать</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal modal--2" data-target="standart-popup">
+                    <div class="popup__content">
+                        <img src="./assets/images/prise_card/standart__popup.png" alt="" class="popup__image">
+                        <div class="popup__info">
+                            <div class="popup__title">
+                                Стандарт
+                            </div>
+                            <div class="popup__text">
+                            Пакет ЭКОНОМ + Полироль трехцветный Продувка сжатым воздухом Дотирка
+                            </div>
+                            <div class="popup__price">
+                                550 руб.
+                            </div>
+                            <button class="order-btn button">Заказать</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal modal--2" data-target="maximum-popup">
+                    <div class="popup__content">
+                        <img src="./assets/images/prise_card/maximum__popup.png" alt="" class="popup__image">
+                        <div class="popup__info">
+                            <div class="popup__title">
+                                Максимум
+                            </div>
+                            <div class="popup__text">
+                            Пакет СТАНДАРТ + 2-фазный шампунь Тефлоновое покрытие Чернение колес
+                            </div>
+                            <div class="popup__price">
+                                700 руб.
+                            </div>
+                            <button class="order-btn button">Заказать</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+	    </div>
 
-        <div class="popup" id="popup2">
-            <div class="popup__content">
-                <img src="./assets/images/prise_card/standart__popup.png" alt="" class="popup__image">
-                <div class="popup__info">
-                    <div class="popup__title">
-                        Стандарт
-                    </div>
-                    <div class="popup__text">
-                        Пакет ЭКОНОМ + Полироль трехцветный Продувка сжатым воздухом Дотирка
-                    </div>
-                    <div class="popup__price">
-                        550р.
-                    </div>
-                </div>
-                <button class="close-btn">Закрыть</button>
-            </div>
-        </div>
-
-        <div class="popup" id="popup3">
-            <div class="popup__content">
-                <img src="./assets/images/prise_card/maximum__popup.png" alt="" class="popup__image">
-                <div class="popup__info">
-                    <div class="popup__title">
-                        Максимум
-                    </div>
-                    <div class="popup__text">
-                    Пакет СТАНДАРТ + 2-фазный шампунь Тефлоновое покрытие Чернение колес
-                    </div>
-                    <div class="popup__price">
-                        700р.
-                    </div>
-                </div>
-                <button class="close-btn">Закрыть</button>
-            </div>
-        </div>
+        <div class="btn-up btn-up_hide"></div>
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.js"></script>
         <script src="./assets/js/script.js"></script>
         <script src="./assets/js/swiper.js"></script>
         <script src="./assets/js/modal.js"></script>
+        <script src="./assets/js/scroll.js"></script>
+        <script src="./assets/js/button-up.js"></script>
     </div>
 </body>
 </html>
